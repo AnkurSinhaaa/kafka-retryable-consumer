@@ -53,18 +53,18 @@
     </scm>
 
     <properties>
-        <avro-maven-plugin.version>1.12.0</avro-maven-plugin.version>
-        <avro.version>1.12.0</avro.version>
+        <avro-maven-plugin.version>1.12.2</avro-maven-plugin.version>
+        <avro.version>1.12.2</avro.version>
         <awaitility.version>4.2.2</awaitility.version>
 
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
-        <jacoco.version>0.8.8</jacoco.version>
-        <junit.version>5.10.1</junit.version>
+        <jacoco.version>0.8.12</jacoco.version>
+        <junit.version>5.13.4</junit.version>
 
-        <kafka.apache.version>4.0.2</kafka.apache.version>
-        <kafka.confluent.version>7.6.0</kafka.confluent.version>
-        <kafka.stream.apache.version>4.0.0</kafka.stream.apache.version>
+        <kafka.apache.version>4.3.1</kafka.apache.version>
+        <kafka.confluent.version>8.3.2</kafka.confluent.version>
+        <kafka.stream.apache.version>4.3.1</kafka.stream.apache.version>
 
         <lombok.version>1.18.38</lombok.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
@@ -85,6 +85,19 @@
         <spotless-maven-plugin.version>2.44.5</spotless-maven-plugin.version>
         <spring-boot.version>3.5.5</spring-boot.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Aligns every JUnit artifact, including those pulled transitively by the Kafka test jars. -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- Dependencies shared by every module. Everything specific to a module (Kafka client, Avro,
          embedded broker used by the integration tests, ...) is declared in the module itself. -->
